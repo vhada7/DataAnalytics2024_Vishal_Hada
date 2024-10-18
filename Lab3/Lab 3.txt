@@ -1,0 +1,5 @@
+Lab 3:
+
+2.2) The full model appears to be a better fit overall. It explains more variance (higher R-squared), has a lower residual standard error.
+
+3.2) 
