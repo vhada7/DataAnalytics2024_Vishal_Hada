@@ -62,6 +62,9 @@ abline(lm(EPI ~ region2[[most_significant]], data = region2), col = "red")
 
 # 3. Classification (kNN)
 
+library("e1071")
+library("ggplot2")
+
 # kNN model for 3 regions
 regions_3 <- c("Global West", "Asia-Pacific", "Latin America & Caribbean")
 regions <- c("Southern Asia", "Eastern Europe", "Former Soviet States")
@@ -87,13 +90,17 @@ y <- subset.train$region
 
 y
 subset.test
-
+subset.train
 
 # Train and evaluate model
 set.seed(123)
-knn_pred <- knn(train = subset.train[1:4], test = subset.test[1:4], cl = y, k = 5)
+knn_pred <- knn(train = subset.train[2:6], test = subset.test[2:6], cl = y, k = 10)
+knn_pred
+length(y)
+length(knn_pred)
+nrow(subset.test)
 # Create contingency matrix
-contingency_matrix <- table(Predicted = knn_pred, Actual = y, dnn = list('predicted', 'actual'))
+contingency_matrix <- table(Predicted = knn_pred, Actual = subset.test$region, dnn = list('predicted', 'actual'))
 print(contingency_matrix)
 
 # Calculate accuracy
